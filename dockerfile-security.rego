@@ -46,7 +46,7 @@ deny[msg] {
     msg = sprintf("Line %d: Avoid curl bashing", [i])
 }
 
-# Do not upgrade your system packages
+# Do not upgrade your system packages/ we comment on  this rule according to our requirements
 warn[msg] {
     input[i].Cmd == "run"
     val := concat(" ", input[i].Value)
@@ -55,7 +55,7 @@ warn[msg] {
     msg = sprintf("Line: %d: Do not upgrade your system packages: %s", [i, val])
 }
 
-# Do not use ADD if possible
+# Do not use ADD if possible, use COPY
 deny[msg] {
     input[i].Cmd == "add"
     msg = sprintf("Line %d: Use COPY instead of ADD", [i])
